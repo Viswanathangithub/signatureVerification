@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service;
 public class SignatureServiceImpl {
 
 	public String validateCertificate(String algorithm, String data, String publicExp, String publicKey, String base64Encode) {
-		String verificationStatus = "Verify Failed";
+		String failedVerificationStatus = "Signature Verification Failed";
+		String verificationStatus = null;
 		try {
 			byte[] dataToSign = data.getBytes();
 			BigInteger pubExp = new BigInteger(publicExp, 16);
@@ -38,7 +39,7 @@ public class SignatureServiceImpl {
 			//Update the Signature object with the original data
 			verifySign.update(dataToSign);
 			//Verify the Signature
-			verificationStatus = verifySign.verify(base64DecodedSignature) ? "Verify Success" : "Verify failure";
+			verificationStatus = verifySign.verify(base64DecodedSignature) ? "Signature Verification Successful" : failedVerificationStatus;
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
 		} catch (NoSuchAlgorithmException e) {
