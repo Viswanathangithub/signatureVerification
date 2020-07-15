@@ -19,7 +19,7 @@ public class SignatureServiceImpl {
 
 	public String validateCertificate(String algorithm, String data, String publicExp, String publicKey, String base64Encode) {
 		String failedVerificationStatus = "Signature Verification Failed";
-		String verificationStatus = null;
+		String verificationStatus = failedVerificationStatus;
 		try {
 			byte[] dataToSign = data.getBytes();
 			BigInteger pubExp = new BigInteger(publicExp, 16);
