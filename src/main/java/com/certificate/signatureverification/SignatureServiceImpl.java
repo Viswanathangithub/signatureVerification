@@ -40,13 +40,7 @@ public class SignatureServiceImpl {
 			verifySign.update(dataToSign);
 			//Verify the Signature
 			verificationStatus = verifySign.verify(base64DecodedSignature) ? "Signature Verification Successful" : failedVerificationStatus;
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
-		} catch (SignatureException e) {
+		} catch (InvalidKeyException | NoSuchAlgorithmException | InvalidKeySpecException | SignatureException | NumberFormatException e) {
 			// TODO Auto-generated catch block
 		}
 		return verificationStatus;
